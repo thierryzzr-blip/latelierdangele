@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>L'atelier d'Angèle — Magasin de décoration</title>
+  <meta name="description" content="Boutique de décoration : objets design, plantes, luminaires et idées cadeaux. Click & collect et livraison locale." />
+  <meta name="theme-color" content="#a6c3b3" />
+  <link rel="icon" sizes="any" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23a6c3b3'/%3E%3Ctext x='50%' y='54%' font-family='Poppins, Arial, sans-serif' font-size='34' text-anchor='middle' fill='%23111827'%3EA%3C/text%3E%3C/svg%3E" type="image/svg+xml"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f3f6f4;
+      --panel: #ffffff;
+      --text: #111827;
+      --muted: #4b5563;
+      --brand: #a6c3b3;
+      --brand-2:#111827;
+      --ok:#10b981; --warn:#f59e0b; --err:#ef4444;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+    @media (prefers-color-scheme: dark){
+      :root{ --bg:#0e1311; --panel:#121a16; --text:#e8f0ea; --muted:#a6b3c2; --brand:#90b9a5; --brand-2:#0b0f14; --shadow: 0 10px 30px rgba(0,0,0,.25);}  
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;scroll-behavior:smooth}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block;border-radius:12px}
+    .container{width:min(1100px, 92%);margin-inline:auto}
+    header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(1.2) blur(10px);background:rgba(15,20,27,.55);border-bottom:1px solid rgba(255,255,255,.08)}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
+    .logo{display:flex;align-items:center;gap:.7rem;font-weight:700;letter-spacing:.3px}
+    .logo-text{font-family:Poppins,Inter,sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(180deg, var(--brand-2), #334155);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .logo-sub{font-size:.72rem; letter-spacing:.25em; text-transform:uppercase; color:var(--muted)}
+    .logo-icon{width:34px;height:34px;border-radius:10px;background:conic-gradient(from 220deg, var(--brand), var(--brand-2));box-shadow:0 6px 18px rgba(0,0,0,.25)}
+    .nav-links{display:flex;gap:1rem;align-items:center}
+    .nav-links a{opacity:.85}
+    .nav-links a:hover{opacity:1}
+    .hero{padding:6rem 0 4rem;text-align:center}
+    .section{padding:3rem 0}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:1.5rem}
+    .gallery img{transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;will-change:transform;border:2px solid rgba(166,195,179,.5);background:#fff}
+    .gallery img:hover{transform:scale(1.03);box-shadow:0 10px 25px rgba(0,0,0,.12);border-color: var(--brand)}
+    .reveal{opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1; transform:none}
+    @media (prefers-reduced-motion: reduce){
+      html:focus-within{scroll-behavior:auto}
+      .gallery img{transition:none}
+      .reveal{transition:none}
+    }
+    /* Lightbox */
+    .lb{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.75);z-index:1000;padding:2rem}
+    .lb.show{display:flex}
+    .lb-img{max-width:92vw;max-height:82vh;border-radius:12px;box-shadow:0 25px 60px rgba(0,0,0,.35);border:4px solid var(--brand);background:#fff}
+    .lb-caption{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);color:#e5efe9;background:rgba(0,0,0,.35);padding:.4rem .8rem;border-radius:999px;font-size:.95rem}
+    .lb-btn{position:fixed;top:1.2rem;right:1.2rem;border:none;background:rgba(255,255,255,.9);color:#111827;border-radius:999px;width:42px;height:42px;font-size:22px;cursor:pointer}
+    .lb-nav{position:fixed;inset:0;pointer-events:none}
+    .lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);pointer-events:auto;border:none;background:rgba(255,255,255,.9);color:#111827;border-radius:999px;width:46px;height:46px;font-size:26px;cursor:pointer}
+    .lb-prev{left:1rem}
+    .lb-next{right:1rem}
+    @media (max-width:640px){.lb-caption{display:none}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="logo" href="#top">
+          <span class="logo-icon"></span>
+          <span>
+            <span class="logo-text">L'atelier d'Angèle</span><br>
+            <span class="logo-sub">Décoration & Beaux-Arts</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="#decoration">Décoration</a>
+          <a href="#beaux-arts">Beaux-Arts</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <h1>Décoration & ambiances uniques à Cholet</h1>
+        <p>Objets, luminaires et accessoires pour sublimer votre intérieur.</p>
+      </div>
+    </section>
+
+    <section id="decoration" class="section">
+      <div class="container">
+        <h2>Décoration</h2>
+        <p>Bougies, coussins, luminaires et objets poétiques pour une ambiance unique.</p>
+        <div class="gallery">
+          <img src="Photo1_20251018_103138.jpg" alt="Vue du magasin avec coussins, fleurs et lampes décoratives"/>
+          <img src="20251018_103153.jpg" alt="Bougies et accessoires de décoration sur étagères vert pastel"/>
+          <img src="Photo 2 20251018_103415.jpg" alt="Objets décoratifs, vaisselle et fleurs dans la vitrine du magasin"/>
+        </div>
+      </div>
+    </section>
+
+    <section id="beaux-arts" class="section">
+      <div class="container">
+        <h2>Beaux-Arts</h2>
+        <p>Pinceaux, encres, aquarelles, papiers et accessoires pour artistes débutants ou confirmés.</p>
+        <div class="gallery">
+          <img src="20251018_102923.jpg" alt="Pinceaux et toiles de peinture"/>
+          <img src="20251018_102929.jpg" alt="Rayon de crayons et couleurs d'art"/>
+          <img src="20251018_102934_001.jpg" alt="Peintures et encres artistiques"/>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Nous contacter</h2>
+        <p><img src='https://upload.wikimedia.org/wikipedia/commons/6/6f/Home_icon_black.svg' alt='Icône maison' style='width:20px;height:20px;vertical-align:middle;margin-right:6px;'>7 rue Travot, 49300 Cholet — <a href="tel:+33951591934"><img src='https://upload.wikimedia.org/wikipedia/commons/8/8c/Phone_font_awesome.svg' alt='Icône téléphone' style='width:20px;height:20px;vertical-align:middle;margin-right:6px;'>09 51 59 19 34</a></p>
+        <p><strong>Horaires d'ouverture :</strong><br>Mercredi – Vendredi : 10h00–13h00 & 14h30–18h00<br>Samedi : 10h00–18h00</p>
+        <p><a href="https://maps.google.com/?q=7+rue+Travot+49300+Cholet" target="_blank">Itinéraire Google Maps</a></p>
+        <p><img src='https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png' alt='Icône Instagram' style='width:20px;height:20px;vertical-align:middle;margin-right:6px;'>Suivez-nous sur Instagram : <a href="https://www.instagram.com/latelierdangele.cholet" target="_blank">@latelierdangele.cholet</a></p>
+        <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DPwOojTiFkv/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/p/DPwOojTiFkv/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Voir cette publication sur Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><
+      </div>
+    </section>
+    <!-- Lightbox overlay -->
+  <div id="lightbox" class="lb" aria-hidden="true" role="dialog" aria-label="Agrandissement de l'image" tabindex="-1">
+    <img class="lb-img" alt="" />
+    <div class="lb-caption" aria-live="polite"></div>
+    <div class="lb-nav" aria-hidden="true">
+      <button class="lb-prev" type="button" aria-label="Image précédente">‹</button>
+      <button class="lb-next" type="button" aria-label="Image suivante">›</button>
+    </div>
+    <button class="lb-btn" type="button" aria-label="Fermer">×</button>
+  </div>
+</main>
+
+  <footer style="text-align:center;padding:2rem 0;color:#4b5563">
+    © <span id="y"></span> L'atelier d'Angèle — Tous droits réservés
+    <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+  </footer>
+  <script>
+    // Animation d'apparition en douceur des images (respecte "prefers-reduced-motion")
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const imgs = document.querySelectorAll('.gallery img');
+      imgs.forEach(img=>img.classList.add('reveal'));
+      if(prefersReduced){ imgs.forEach(img=>img.classList.add('show')); return; }
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
+      },{threshold:0.15});
+      imgs.forEach(el=>io.observe(el));
+    })();
+  </script>
+  <script>
+    // Lightbox (agrandissement au clic + navigation)
+    (function(){
+      const overlay = document.getElementById('lightbox');
+      const imgEl = overlay.querySelector('.lb-img');
+      const cap = overlay.querySelector('.lb-caption');
+      const prevBtn = overlay.querySelector('.lb-prev');
+      const nextBtn = overlay.querySelector('.lb-next');
+      const closeBtn = overlay.querySelector('.lb-btn');
+      const imgs = Array.from(document.querySelectorAll('.gallery img'));
+      let index = 0;
+      function open(i){ index = i; const el = imgs[index]; imgEl.src = el.src; imgEl.alt = el.alt||''; cap.textContent = el.alt||''; overlay.classList.add('show'); overlay.removeAttribute('aria-hidden'); overlay.focus(); }
+      function close(){ overlay.classList.remove('show'); overlay.setAttribute('aria-hidden','true'); imgEl.src=''; }
+      function next(){ open((index+1)%imgs.length); }
+      function prev(){ open((index-1+imgs.length)%imgs.length); }
+      imgs.forEach((el,i)=> el.addEventListener('click', ()=>open(i)) );
+      nextBtn.addEventListener('click', (e)=>{e.stopPropagation(); next();});
+      prevBtn.addEventListener('click', (e)=>{e.stopPropagation(); prev();});
+      closeBtn.addEventListener('click', (e)=>{e.stopPropagation(); close();});
+      overlay.addEventListener('click', (e)=>{ if(e.target===overlay) close(); });
+      window.addEventListener('keydown', (e)=>{
+        if(!overlay.classList.contains('show')) return;
+        if(e.key==='Escape') close();
+        if(e.key==='ArrowRight') next();
+        if(e.key==='ArrowLeft') prev();
+      });
+    })();
+  </script>
+</body>
+</html>
