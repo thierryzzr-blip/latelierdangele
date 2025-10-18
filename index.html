@@ -11,47 +11,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
+    :root {
       --bg: #f3f6f4;
-      --panel: #ffffff;
       --text: #111827;
       --muted: #4b5563;
       --brand: #a6c3b3;
-      --brand-2:#111827;
-      --ok:#10b981; --warn:#f59e0b; --err:#ef4444;
-      --radius: 18px;
+      --brand-2: #111827;
       --shadow: 0 10px 30px rgba(0,0,0,.08);
     }
-    @media (prefers-color-scheme: dark){
-      :root{ --bg:#0e1311; --panel:#121a16; --text:#e8f0ea; --muted:#a6b3c2; --brand:#90b9a5; --brand-2:#0b0f14; --shadow: 0 10px 30px rgba(0,0,0,.25);}  
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;height:100%;scroll-behavior:smooth}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block;border-radius:12px}
-    .container{width:min(1100px, 92%);margin-inline:auto}
-    header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(1.2) blur(10px);background:rgba(15,20,27,.55);border-bottom:1px solid rgba(255,255,255,.08)}
-    nav{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
-    .logo{display:flex;align-items:center;gap:.7rem;font-weight:700;letter-spacing:.3px}
-    .logo img{height:48px;width:auto;border-radius:8px}
-    .logo-text{font-family:Poppins,Inter,sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(180deg, var(--brand-2), #334155);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .logo-sub{font-size:.72rem; letter-spacing:.25em; text-transform:uppercase; color:var(--muted)}
-    .nav-links{display:flex;gap:1rem;align-items:center}
-    .nav-links a{opacity:.85}
-    .nav-links a:hover{opacity:1}
-    .hero{padding:6rem 0 4rem;text-align:center}
-    .section{padding:3rem 0}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:1.5rem}
-    .gallery img{transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;will-change:transform;border:2px solid rgba(166,195,179,.5);background:#fff}
-    .gallery img:hover{transform:scale(1.03);box-shadow:0 10px 25px rgba(0,0,0,.12);border-color: var(--brand)}
-    .reveal{opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s ease}
-    .reveal.show{opacity:1; transform:none}
-    @media (prefers-reduced-motion: reduce){
-      html:focus-within{scroll-behavior:auto}
-      .gallery img{transition:none}
-      .reveal{transition:none}
-    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; scroll-behavior: smooth; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; border-radius: 12px; }
+    .container { width: min(1100px, 92%); margin-inline: auto; }
+    header { position: sticky; top: 0; z-index: 40; backdrop-filter: saturate(1.2) blur(10px); background: rgba(15,20,27,.55); border-bottom: 1px solid rgba(255,255,255,.08); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: .4rem 0; }
+    .logo { display: flex; align-items: center; gap: .5rem; font-weight: 700; }
+    .logo img { height: 42px; width: auto; border-radius: 8px; }
+    .logo-text { font-family: Poppins, Inter, sans-serif; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; background: linear-gradient(180deg, var(--brand-2), #334155); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .logo-sub { font-size: .72rem; letter-spacing: .25em; text-transform: uppercase; color: var(--muted); }
+    .nav-links { display: flex; gap: .8rem; align-items: center; }
+    .hero { padding: 1.2rem 0 1rem; text-align: center; }
+    .section { padding: 1rem 0; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: .6rem; margin-top: .6rem; }
+    .gallery img { transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; border: 2px solid rgba(166,195,179,.5); background: #fff; }
+    .gallery img:hover { transform: scale(1.03); box-shadow: 0 8px 18px rgba(0,0,0,.12); border-color: var(--brand); }
   </style>
 </head>
 <body>
@@ -73,7 +58,6 @@
       </nav>
     </div>
   </header>
-
   <main id="top">
     <section class="hero">
       <div class="container">
@@ -81,31 +65,28 @@
         <p>Objets, luminaires et accessoires pour sublimer votre intérieur.</p>
       </div>
     </section>
-
     <section id="decoration" class="section">
       <div class="container">
         <h2>Décoration</h2>
         <p>Bougies, coussins, luminaires et objets poétiques pour une ambiance unique.</p>
         <div class="gallery">
-          <img src="Photo1_20251018_103138.jpg" alt="Vue du magasin avec coussins, fleurs et lampes décoratives"/>
-          <img src="20251018_103153.jpg" alt="Bougies et accessoires de décoration sur étagères vert pastel"/>
-          <img src="Photo 2 20251018_103415.jpg" alt="Objets décoratifs, vaisselle et fleurs dans la vitrine du magasin"/>
+          <img src="Photo1_20251018_103138.jpg" alt="Vue du magasin avec coussins, fleurs et lampes décoratives" />
+          <img src="20251018_103153.jpg" alt="Bougies et accessoires de décoration sur étagères vert pastel" />
+          <img src="Photo 2 20251018_103415.jpg" alt="Objets décoratifs, vaisselle et fleurs dans la vitrine du magasin" />
         </div>
       </div>
     </section>
-
     <section id="beaux-arts" class="section">
       <div class="container">
         <h2>Beaux-Arts</h2>
         <p>Pinceaux, encres, aquarelles, papiers et accessoires pour artistes débutants ou confirmés.</p>
         <div class="gallery">
-          <img src="20251018_102923.jpg" alt="Pinceaux et toiles de peinture"/>
-          <img src="20251018_102929.jpg" alt="Rayon de crayons et couleurs d'art"/>
-          <img src="20251018_102934_001.jpg" alt="Peintures et encres artistiques"/>
+          <img src="20251018_102923.jpg" alt="Pinceaux et toiles de peinture" />
+          <img src="20251018_102929.jpg" alt="Rayon de crayons et couleurs d'art" />
+          <img src="20251018_102934_001.jpg" alt="Peintures et encres artistiques" />
         </div>
       </div>
     </section>
-
     <section id="contact" class="section">
       <div class="container">
         <h2>Nous contacter</h2>
@@ -115,8 +96,7 @@
       </div>
     </section>
   </main>
-
-  <footer style="text-align:center;padding:2rem 0;color:#4b5563">
+  <footer style="text-align:center;padding:.8rem 0;color:#4b5563">
     © <span id="y"></span> L'atelier d'Angèle — Tous droits réservés
     <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
   </footer>
