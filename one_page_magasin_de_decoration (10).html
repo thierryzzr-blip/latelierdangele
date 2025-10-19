@@ -38,12 +38,6 @@
     .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: .6rem; margin-top: .6rem; }
     .gallery img { transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; border: 2px solid rgba(166,195,179,.5); background: #fff; }
     .gallery img:hover { transform: scale(1.03); box-shadow: 0 8px 18px rgba(0,0,0,.12); border-color: var(--brand); }
-      .gallery img { transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; border: 2px solid rgba(166,195,179,.5); background: #fff; cursor: zoom-in; }
-    .gallery img:hover { transform: scale(1.03); box-shadow: 0 8px 18px rgba(0,0,0,.12); border-color: var(--brand); }
-    /* Lightbox / Zoom */
-    .zoom-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.8);z-index:9999;}
-    .zoom-overlay img{max-width:95vw;max-height:92vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6);cursor: zoom-out;}
-    .zoom-overlay.show{display:flex;}
   </style>
 </head>
 <body>
@@ -77,9 +71,6 @@
         <h2>Décoration</h2>
         <p>Bougies, coussins, luminaires et objets poétiques pour une ambiance unique.</p>
         <div class="gallery">
-          <img loading="lazy" class="zoomable" src="Photo1_20251018_103138.jpg" alt="Vue du magasin avec coussins, fleurs et lampes décoratives" />
-          <img loading="lazy" class="zoomable" src="20251018_103153.jpg" alt="Bougies et accessoires de décoration sur étagères vert pastel" />
-          <img loading="lazy" class="zoomable" src="Photo 2 20251018_103415.jpg" alt="Objets décoratifs, vaisselle et fleurs dans la vitrine du magasin" />
           <img src="Photo1_20251018_103138.jpg" alt="Vue du magasin avec coussins, fleurs et lampes décoratives" />
           <img src="20251018_103153.jpg" alt="Bougies et accessoires de décoration sur étagères vert pastel" />
           <img src="Photo 2 20251018_103415.jpg" alt="Objets décoratifs, vaisselle et fleurs dans la vitrine du magasin" />
@@ -91,9 +82,9 @@
         <h2>Beaux-Arts</h2>
         <p>Pinceaux, encres, aquarelles, papiers et accessoires pour artistes débutants ou confirmés.</p>
         <div class="gallery">
-          <img loading="lazy" class="zoomable" src="20251018_102923.jpg" alt="Pinceaux et toiles de peinture" />
-          <img loading="lazy" class="zoomable" src="20251018_102929.jpg" alt="Rayon de crayons et couleurs d'art" />
-          <img loading="lazy" class="zoomable" src="20251018_102934_001.jpg" alt="Peintures et encres artistiques" />
+          <img src="20251018_102923.jpg" alt="Pinceaux et toiles de peinture" />
+          <img src="20251018_102929.jpg" alt="Rayon de crayons et couleurs d'art" />
+          <img src="20251018_102934_001.jpg" alt="Peintures et encres artistiques" />
         </div>
       </div>
     </section>
@@ -105,33 +96,7 @@
         <p><img src='https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png' alt='Icône Instagram' style='width:20px;height:20px;vertical-align:middle;margin-right:6px;'>Suivez-nous sur Instagram : <a class="link-blue" href="https://www.instagram.com/latelierdangele.cholet" target="_blank">@latelierdangele.cholet</a></p>
       </div>
     </section>
-      <!-- Zoom overlay container -->
-  <div class="zoom-overlay" id="zoomOverlay" aria-hidden="true" role="dialog" aria-label="Agrandissement de l'image">
-    <img src="" alt="Agrandissement" id="zoomImg" />
-  </div>
-</main>
-<script>
-  // Lightbox zoom on click (works on mobile et desktop)
-  (function(){
-    const overlay = document.getElementById('zoomOverlay');
-    const zoomImg = document.getElementById('zoomImg');
-    const imgs = document.querySelectorAll('.zoomable');
-    imgs.forEach(img => img.addEventListener('click', () => {
-      zoomImg.src = img.src;
-      overlay.classList.add('show');
-      overlay.setAttribute('aria-hidden','false');
-      document.body.style.overflow = 'hidden';
-    }));
-    function close(){
-      overlay.classList.remove('show');
-      overlay.setAttribute('aria-hidden','true');
-      zoomImg.src = '';
-      document.body.style.overflow = '';
-    }
-    overlay.addEventListener('click', close);
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
-  })();
-</script>
+  </main>
   <footer style="text-align:center;padding:.8rem 0;color:#f1f1f1">
     © <span id="y"></span> L'atelier d'Angèle V9 — Tous droits réservés 
     <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
